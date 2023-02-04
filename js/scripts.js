@@ -8,3 +8,5 @@ let size = 100;
 let doubleSize = size * 2;
 let minSize = (doubleSize * 2) - (size / 2);
 document.write(doubleSize);
+let favoriteFood = 'Spaghetti';
+document.write(favoriteFood);
