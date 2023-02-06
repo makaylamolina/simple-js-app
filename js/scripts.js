@@ -1,3 +1,4 @@
+alert('Hello world!');
 let myName = 'Makayla';
 document.write(myName);
 myName = 'Molina';
