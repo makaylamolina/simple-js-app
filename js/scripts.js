@@ -10,10 +10,15 @@ let pokemonList2 = [
   ];
 
 //loop to write out each pokemon
-for (let i = 0; i <=pokemonList.length; i++) {
-  if (pokemonList[i].height >= 1.5) {
-    document.write(pokemonList[i].name + ' (height : ' + pokemonList[i].height + ') Wow, that\'s big! <br>');
+function printArrayDetails(pokemon) {
+    if (pokemon.height >= 1.5) {
+      document.write(pokemon.name + ' (height: ' + pokemon.height + 'm) Wow, that\'s big! <br>');
+    } else if (pokemon.height >= 1) {
+      document.write(pokemon.name + ' (height: ' + pokemon.height + 'm) This one is medium size. <br>');
     } else {
-    document.write(pokemonList[i].name + ' (height: ' + pokemonList[i].height + 'm) This one isn\'t very big. <br>');
+      document.write(pokemon.name + ' (height: ' + pokemon.height + 'm) This one is pretty small! <br>');
+    }
   }
-}
+  
+  pokemonList.forEach(printArrayDetails);
+  pokemonList2.forEach(printArrayDetails);
