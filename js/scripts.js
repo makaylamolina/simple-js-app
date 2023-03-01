@@ -1,4 +1,4 @@
-let pokemonRepository = (function() {
+let pokemonRepository = (function () {
   let pokemonList = [
     { name: 'Charmander', height: 0.6, type: ['fire']},
     { name: 'Charmeleon', height: 1.1, type: ['fire']},
@@ -11,30 +11,37 @@ let pokemonRepository = (function() {
   function add(pokemon) {
     pokemonList.push(pokemon);
   }
-
-  //create buttons
-  function addListItem(pokemon) {
-    let pokedexList = document.querySelector('.pokemon-list');
-    let listItem = document.createElement('li');
-    let button = document.createElement('button');
-    button.innerText = pokemon.name;
-    button.classList.add("button-class");
-    pokedexList.appendChild(listItem);
-    listItem.appendChild(button);
-  };
   
   function getAll() {
     return pokemonList;
   }
-
+  //create li for each pokemon
+  function addListItem(pokemon){
+    let pokedexList = document.querySelector('.pokemon-list');
+    let listPokemon = document.createElement('li');
+    //create button for each li
+    let button = document.createElement('button');
+    button.innerText = pokemon.name;
+    button.classList.add("button-class");
+    listPokemon.appendChild(button);
+    pokedexList.appendChild(listPokemon);
+    //add event listener
+    button.addEventListener('click', function() {
+      console.log(showDetails);
+    })
+  }
+  //call pokemon name to console
+  function showDetails(pokemon){
+    console.log(pokemon.name);
+  }
   return {
     add: add,
     getAll: getAll,
-    addListItem: addListItem
+    addListItem: addListItem,
+    showDetails: showDetails
   }
 })();
 
-//loop to write out each pokemon
 function printArrayDetails(pokemon) {
   if (pokemon.height >= 1.5) {
     document.write(pokemon.name + ' (height: ' + pokemon.height + 'm) Wow, that\'s big! <br>');
@@ -44,9 +51,8 @@ function printArrayDetails(pokemon) {
     document.write(pokemon.name + '(height: ' + pokemon.height + 'm) This one is pretty small! <br>');
   }
 }
-
-
-
+//for each loop
 pokemonRepository.getAll().forEach(function(pokemon) {
   pokemonRepository.addListItem(pokemon);
+  pokemonRepository.showDetails(pokemon);
 });
