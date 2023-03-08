@@ -38,7 +38,7 @@ let pokemonRepository = (function () {
       json.results.forEach(function (item) {
         let pokemon = {
           name: item.name,
-          datilsUrl: item.url
+          detailsUrl: item.url
         };
         add(pokemon);
       });
