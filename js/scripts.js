@@ -19,17 +19,66 @@ let pokemonRepository = (function () {
     button.classList.add("button-class");
     listPokemon.appendChild(button);
     pokedexList.appendChild(listPokemon);
-    //add event listener
+    //add event listener for clicking on a button
     button.addEventListener('click', function() {
       showDetails(pokemon);
     })
   }
-  //call pokemon name to console
+
   function showDetails(pokemon){
     loadDetails(pokemon).then(function () {
-      console.log(pokemon);
+      showModal(pokemon.name, pokemon.imageUrl, 'Height: ' + pokemon.height);
     });
   }
+
+  //modal start
+  let modalContainer = document.querySelector('#modal-container');
+  function showModal(title, img, text) {
+    modalContainer.innerHTML = ' ';
+    let modal = document.createElement('div');
+    modal.classList.add('modal');
+
+    let closeButtonElement = document.createElement('button');
+    closeButtonElement.classList.add('modal-close');
+    closeButtonElement.innerText = 'Close';
+    closeButtonElement.addEventListener('click', hideModal);
+
+    let titleElement = document.createElement('h1');
+    titleElement.innerText = title;
+
+    let imageElement = document.createElement("img");
+    imageElement.setAttribute("src", img);
+    
+    let contentElement = document.createElement('p');
+    contentElement.innerText = text,
+
+    modal.appendChild(closeButtonElement);
+    modal.appendChild(titleElement);
+    modal.appendChild(imageElement);
+    modal.appendChild(contentElement);
+    modalContainer.appendChild(modal);
+
+    modalContainer.classList.add('is-visible');
+    modalContainer.addEventListener('click', (e) => {
+      let target = e.target;
+      if (target === modalContainer) {
+        hideModal();
+      }
+    });
+  }
+  function hideModal() {
+    modalContainer.classList.remove('is-visible');
+  }
+
+  window.addEventListener('keydown', (e) => {
+    if (e.key === 'Escape' && modalContainer.classList.contains('is-visible')) {
+      hideModal();
+    }
+
+  });
+
+
+  
   //pull pokemon list from url
   function loadList() {
     return fetch(apiUrl).then(function (response) {
@@ -59,6 +108,7 @@ let pokemonRepository = (function () {
       console.error(e);
     });
   }
+
   return {
     add: add,
     getAll: getAll,
