@@ -5,14 +5,17 @@ html, body {
 body {
   font-family: 'Shantell Sans', sans-serif;
   font-weight: 400;
-  font-size: 16px;
+  font-size: 30px;
+  text-align: center;
 }
 ul {
   list-style-type: none;
 }
 .button-class {
   display: inline-block;
+  text-align: center;
   font-family: inherit;
+  font-size: 40px;
   text-transform: capitalize;
   background-color: #71c7ec;
   color: black;
@@ -20,6 +23,7 @@ ul {
   padding: 10px;
   margin: 5px;
   border: 2px solid black;
+  width: 500px;
 }
 button:hover,
 button:focus {
@@ -34,6 +38,7 @@ button:focus {
 }
 #modal-container.is-visible {
   text-transform: capitalize;
+  text-align: center;
   position: fixed;
   padding: 20px;
   box-sizing: border-box;
