@@ -10,7 +10,6 @@ body {
 ul {
   list-style-type: none;
 }
-/*button*/
 .button-class {
   display: inline-block;
   font-family: inherit;
@@ -28,9 +27,8 @@ button:focus {
   opacity: 0.8;
   transition: 0.2s opacity;
 }
-/*end of button*/
 
-/*modal*/
+/* modal*/
 #modal-container {
   display: none;
 }
@@ -39,9 +37,11 @@ button:focus {
   position: fixed;
   padding: 20px;
   box-sizing: border-box;
+  top: 0;
+  left: 0;
   width: 100%;
   height: 100%;
-  background-color: #189ad3;
+  background: rgba(0, 0, 0, 0.5);
   
   /*to show above other content*/
   z-index: 999;
@@ -58,7 +58,7 @@ button:focus {
   margin: auto;
   display: inline-block;
   box-sizing: border-box;
-  background: #fff;
+  background: #1ebbd7;
   padding: 15px;
   width: 100%;
   max-width: 700px;
@@ -67,6 +67,7 @@ button:focus {
 
 .modal-close {
   float: right;
+  -webkit-appearance: none;
   border: 0;
   background: none;
   color: #005073;
