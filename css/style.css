@@ -5,11 +5,14 @@ html, body {
 body {
   font-family: 'Shantell Sans', sans-serif;
   font-weight: 400;
-  font-size: 30px;
+  font-size: 40px;
   text-align: center;
 }
 ul {
   list-style-type: none;
+}
+h1 {
+  font-size: 60px;
 }
 .button-class {
   display: inline-block;
