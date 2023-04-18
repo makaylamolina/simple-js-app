@@ -11,8 +11,8 @@ body {
 ul {
   list-style-type: none;
 }
-h1 {
-  font-size: 60px;
+header .row div {
+  background-color: #005073;
 }
 .button-class {
   display: inline-block;
