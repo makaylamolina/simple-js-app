@@ -11,74 +11,28 @@ let pokemonRepository = (function () {
   }
   //create li for each pokemon
   function addListItem(pokemon){
+    //attach to pokemon list
     let pokedexList = document.querySelector('.pokemon-list');
     let listPokemon = document.createElement('li');
+    listPokemon.classList.add('list-group-item');
+
     //create button for each li
     let button = document.createElement('button');
+    //add button classes and attributes
+    button.classList.add('btn');
+    button.classList.add('btn-primary');
+    button.setAttribute('data-toggle', 'modal');
+    button.setAttribute('data-target', '#exampleModal');
+
+    button.addEventListener('click', function (event) {
+      showDetails(pokemon)
+    })
+
     button.innerText = pokemon.name;
-    button.classList.add("button-class");
     listPokemon.appendChild(button);
     pokedexList.appendChild(listPokemon);
-    //add event listener for clicking on a button
-    button.addEventListener('click', function() {
-      showDetails(pokemon);
-    })
   }
 
-  function showDetails(pokemon){
-    loadDetails(pokemon).then(function () {
-      showModal(pokemon.name, pokemon.imageUrl, 'Height: ' + pokemon.height);
-    });
-  }
-
-  //modal start
-  let modalContainer = document.querySelector('#modal-container');
-  function showModal(title, img, text) {
-    modalContainer.innerHTML = ' ';
-    let modal = document.createElement('div');
-    modal.classList.add('modal');
-
-    let closeButtonElement = document.createElement('button');
-    closeButtonElement.classList.add('modal-close');
-    closeButtonElement.innerText = 'Close';
-    closeButtonElement.addEventListener('click', hideModal);
-
-    let titleElement = document.createElement('h1');
-    titleElement.innerText = title;
-
-    let imageElement = document.createElement("img");
-    imageElement.setAttribute("src", img);
-    
-    let contentElement = document.createElement('p');
-    contentElement.innerText = text,
-
-    modal.appendChild(closeButtonElement);
-    modal.appendChild(titleElement);
-    modal.appendChild(imageElement);
-    modal.appendChild(contentElement);
-    modalContainer.appendChild(modal);
-
-    modalContainer.classList.add('is-visible');
-    modalContainer.addEventListener('click', (e) => {
-      let target = e.target;
-      if (target === modalContainer) {
-        hideModal();
-      }
-    });
-  }
-  function hideModal() {
-    modalContainer.classList.remove('is-visible');
-  }
-
-  window.addEventListener('keydown', (e) => {
-    if (e.key === 'Escape' && modalContainer.classList.contains('is-visible')) {
-      hideModal();
-    }
-
-  });
-
-
-  
   //pull pokemon list from url
   function loadList() {
     return fetch(apiUrl).then(function (response) {
@@ -103,10 +57,40 @@ let pokemonRepository = (function () {
     }).then(function (details) {
       item.imageUrl = details.sprites.front_default;
       item.height = details.height;
-      item.types = details.types;
+      item.types = [];
+      for (var i = 0; i < details.types.length; i++) {
+        item.types.push(details.types[i].type.name);
+      }
     }).catch(function (e) {
       console.error(e);
     });
+  }
+
+  function showDetails(pokemon) {
+    loadDetails(pokemon).then(function() {
+      showModal(pokemon);
+    })
+  }
+
+  function showModal(pokemon) {
+    //modal title
+    let modalTitle = $(".modal-title");
+    let modalBody = $(".modal-body");
+    //empty modal
+    modalTitle.empty();
+    modalBody.empty();
+    
+    let nameElement = $("<h1>" + pokemon.name + "</h1>");
+    let imageElement = $('<img class="modal-img style="width:50%">');
+    imageElement.attr("src", pokemon.imageUrl);
+    let heightElement = $("<p>" + "height: " + pokemon.height + "</p>");
+    let typesElement = $("<p>" + "types: " + pokemon.types + "</p>");
+
+    modalTitle.append(nameElement);
+    modalBody.append(imageElement);
+    modalBody.append(heightElement);
+    modalBody.append(typesElement);
+
   }
 
   return {
@@ -114,6 +98,7 @@ let pokemonRepository = (function () {
     getAll: getAll,
     addListItem: addListItem,
     showDetails: showDetails,
+    showModal: showModal,
     loadList: loadList,
     loadDetails: loadDetails
   }
