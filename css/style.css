@@ -12,25 +12,23 @@ body {
 .page-container {
   margin-top: 60px;
 }
-ul {
-  list-style-type: none;
-}
 header .row div {
-  background-color: #71c7ec;
+  background-color: #66b1f5;
 }
-.button-class {
-  display: inline-block;
+.btn-primary {
+  list-style-type: none;
+  display: flex;
+  flex-direction: column;
   text-align: center;
+  justify-content: center;
   font-family: inherit;
   font-size: 40px;
   text-transform: capitalize;
-  background-color: #71c7ec;
+  background-color: #0033ff;
   color: black;
-  text-decoration: none;
   padding: 10px;
   margin: 5px;
   border: 2px solid black;
-  width: 500px;
 }
 button:hover,
 button:focus {
@@ -38,6 +36,17 @@ button:focus {
   opacity: 0.8;
   transition: 0.2s opacity;
 }
+.list-group-item {
+  display: inline-block;
+  padding: 0;
+}
 .modal-body {
   font-size: medium;
+  background-color: #66b1f5;
+}
+@media all and (max-width: 1800px) {
+  .pokemon-list {
+    grid-template-columns: 1fr 1fr;
+    gap: 40px;
+  }
 }
