@@ -4,6 +4,8 @@ html, body {
   margin: 20px;
 }
 body {
+  margin: 20px;
+  padding: 10px;
   font-family: 'Shantell Sans', sans-serif;
   font-weight: 400;
   font-size: 40px;
@@ -58,7 +60,7 @@ button:focus {
 }
 @media all and (max-width: 1080px) {
   .pokemon-list {
-    grid-template-columns: 1fr 1fr 1fr 1fr;
+    grid-template-columns: 1fr 1fr 1fr;
     gap: 40px;
   }
 }
