@@ -14,10 +14,11 @@ header .row div {
 }
 .navbar-brand {
   font-size: 2rem;
+  color: aliceblue;
 }
 .btn-primary {
   font-family: inherit;
-  font-size: 30px;
+  font-size: 2rem;
   text-transform: capitalize;
   background-color: #0033ff;
   color: black;
@@ -39,7 +40,15 @@ button:focus {
 }
 .modal-body {
   font-size: medium;
-  background-color: #66b1f5;
+}
+.modal-header {
+  background-color: #1ebbd7;
+}
+.modal-footer {
+  background-color: #1ebbd7;
+}
+.btn-secondary {
+  background-color: #107dac;
 }
 .pokemon-list{
   list-style-type: none;
